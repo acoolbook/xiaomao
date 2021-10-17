@@ -1,11 +1,11 @@
 // 清空 elecV2P 所有日志文件，删除部分缓存及释放一些内存
-// 定时任务: 59 23 * * * https://raw.githubusercontent.com/elecV2/elecV2P/master/script/JSFile/deletelog.js
+// 定时任务: 59 23 * * * https://raw.githubusercontent.com/acoolbook/xiaomao/main/deletelog.js
 // 最近更新: 2021-09-13
 
 const CONFIG = {
   clearlogfile: true,              // 是否清空 logs 目录下的所有日志文件
   clearanyproxycache: true,        // 是否删除由 ANYPROXY 代理产生的缓存文件
-  flushpm2logs: true,              // 是否清空由 pm2 运行产生的日志文件
+  flushpm2logs: false,              // 是否清空由 pm2 运行产生的日志文件
   doneunfinish: false,             // 强制 resolve 尚未结束的脚本（测试，更多说明看下面相关函数中的注释
 }
 
