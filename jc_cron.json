@@ -17,7 +17,7 @@
     {
       "name": "晶彩文章",
       "type": "cron",
-      "time": "10 6,12,18 * * *",
+      "time": "17 6,12,17 * * *",
       "running": true,
       "job": {
         "type": "runjs",
