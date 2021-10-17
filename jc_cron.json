@@ -3,12 +3,12 @@
   "desc": "无",
   "date": "2021-08-05 20:32:08",
   "author": "https://t.me/ShaolinTemple1",
-  "resource": "https://raw.githubusercontent.com/shaolin-kongfu/js_scripts/main/jc_cron.json",
+  "resource": "https://raw.githubusercontent.com/acoolbook/xiaomao/main/jc_cron.json",
   "list": [
     {
       "name": "晶彩签到",
       "type": "cron",
-      "time": "15 2 * * *",
+      "time": "15 0,7 * * *",
       "job": {
         "type": "runjs",
         "target": "https://raw.githubusercontent.com/shaolin-kongfu/js_scripts/main/jcqd.js"
@@ -17,7 +17,7 @@
     {
       "name": "晶彩文章",
       "type": "cron",
-      "time": "30 7,12,18 * * *",
+      "time": "10 6,12,18 * * *",
       "running": true,
       "job": {
         "type": "runjs",
@@ -27,7 +27,7 @@
     {
      "name": "晶彩看看赚",
       "type": "cron",
-      "time": "45 9 * * *",
+      "time": "15 8 * * *",
       "running": true,
       "job": {
         "type": "runjs",
@@ -37,7 +37,7 @@
     {
       "name": "晶彩火爆转发",
       "type": "cron",
-      "time": "15 6,12,18 * * *",
+      "time": "13 8,13,17 * * *",
       "running": true,
       "job": {
         "type": "runjs",
@@ -47,7 +47,7 @@
     {
       "name": "晶彩福利视频",
       "type": "cron",
-      "time": "20 21 * * *",
+      "time": "20 10,21 * * *",
       "running": true,
       "job": {
         "type": "runjs",
@@ -57,7 +57,7 @@
     {
       "name": "晶彩每日任务宝箱领取",
       "type": "cron",
-      "time": "15 22 * * *",
+      "time": "35 9,15,22 * * *",
       "running": true,
       "job": {
         "type": "runjs",
@@ -67,7 +67,7 @@
     {
       "name": "晶彩好友签到红包",
       "type": "cron",
-      "time": "15 7 * * *",
+      "time": "22 8,20 * * *",
       "running": true,
       "job": {
         "type": "runjs",
@@ -77,7 +77,7 @@
     {
       "name": "晶彩抽奖",
       "type": "cron",
-      "time": "34 22 * * *",
+      "time": "14 11,22 * * *",
       "running": true,
       "job": {
         "type": "runjs",
@@ -87,7 +87,7 @@
     {
       "name": "晶彩提现",
       "type": "cron",
-      "time": "34 10 * * *",
+      "time": "13 9 * * *",
       "running": true,
       "job": {
         "type": "runjs",
@@ -97,7 +97,7 @@
     {
       "name": "晶彩每日收益统计",
       "type": "cron",
-      "time": "15 23 * * *",
+      "time": "25 23 * * *",
       "running": true,
       "job": {
         "type": "runjs",
