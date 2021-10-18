@@ -57,7 +57,7 @@
     {
       "name": "晶彩每日任务宝箱领取",
       "type": "cron",
-      "time": "47 9,15,22 * * *",
+      "time": "47 * * * *",
       "running": true,
       "job": {
         "type": "runjs",
@@ -87,7 +87,7 @@
     {
       "name": "晶彩提现",
       "type": "cron",
-      "time": "13 9 * * *",
+      "time": "13 19 * * *",
       "running": true,
       "job": {
         "type": "runjs",
