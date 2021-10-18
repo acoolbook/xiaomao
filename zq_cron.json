@@ -57,7 +57,7 @@
     {
       "name": "中青每日任务宝箱领取",
       "type": "cron",
-      "time": "3 10,19,23 * * *",
+      "time": "13 * * * *",
       "running": true,
       "job": {
         "type": "runjs",
@@ -137,7 +137,7 @@
     {
       "name": "中青自动提现",
       "type": "cron",
-      "time": "15 8 * * *",
+      "time": "15 18 * * *",
       "running": true,
       "job": {
         "type": "runjs",
