@@ -57,7 +57,7 @@
     {
       "name": "中青每日任务宝箱领取",
       "type": "cron",
-      "time": "23 1,12,19,22 * * *",
+      "time": "3 * * * *",
       "running": true,
       "job": {
         "type": "runjs",
