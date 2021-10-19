@@ -107,7 +107,7 @@
     {
       "name": "中青搜索赚",
       "type": "cron",
-      "time": "9 6,13,21 * * *",
+      "time": "19 6,13,21 * * *",
       "running": true,
       "job": {
         "type": "runjs",
@@ -117,7 +117,7 @@
     {
       "name": "中青浏览赚",
       "type": "cron",
-      "time": "24 6,20 * * *",
+      "time": "24 6,19 * * *",
       "running": true,
       "job": {
         "type": "runjs",
@@ -127,7 +127,7 @@
     {
       "name": "中青阅读翻倍",
       "type": "cron",
-      "time": "3,19 0,5 * * 1",
+      "time": "3 0,5 * * 1",
       "running": true,
       "job": {
         "type": "runjs",
@@ -137,7 +137,7 @@
     {
       "name": "中青自动提现",
       "type": "cron",
-      "time": "15 18 * * *",
+      "time": "14 19 * * *",
       "running": true,
       "job": {
         "type": "runjs",
