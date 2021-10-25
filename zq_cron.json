@@ -17,7 +17,7 @@
     {
       "name": "中青50 400宝箱",
       "type": "cron",
-      "time": "6 11，21 * * *",
+      "time": "6 11,21 * * *",
       "job": {
         "type": "runjs",
         "target": "https://gitee.com/Jxell/js_scripts/raw/main/zq/zq_5_60.js"
