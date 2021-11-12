@@ -8,7 +8,7 @@
     {
       "name": "晶彩天气签到",
       "type": "cron",
-      "time": "7 0,7 * * *"",
+      "time": "7 0,7 * * *",
       "job": {
         "type": "runjs",
         "target": "https://raw.githubusercontent.com/linyali888/js/main/jctq/jctqqd.js"
