@@ -1,0 +1,88 @@
+{
+  "name": "晶彩天气定时任务订阅",
+  "desc": "无",
+  "date": "2021-11-12",
+  "author": "linyali888",
+  "resource": "https://raw.githubusercontent.com/linyali888/js/main/jctq_cron.json",
+  "list": [
+    {
+      "name": "晶彩天气签到",
+      "type": "cron",
+      "time": "7 0,7 * * *"",
+      "job": {
+        "type": "runjs",
+        "target": "https://raw.githubusercontent.com/linyali888/js/main/jctq/jctqqd.js"
+      }
+    },
+    {
+      "name": "晶彩天气文章",
+      "type": "cron",
+      "time": "17 6,17 * * *",
+      "running": true,
+      "job": {
+        "type": "runjs",
+        "target": "https://raw.githubusercontent.com/linyali888/js/main/jctq/jctqwz.js"
+      }
+    },
+    {
+     "name": "晶彩天气看看赚",
+      "type": "cron",
+      "time": "15 8,18 * * *",
+      "running": true,
+      "job": {
+        "type": "runjs",
+        "target": "https://raw.githubusercontent.com/linyali888/js/main/jctq/jctqkkz.js"
+      }
+    },
+    {
+      "name": "晶彩天气火爆转发",
+      "type": "cron",
+      "time": "35 6,12,18 * * *",
+      "running": true,
+      "job": {
+        "type": "runjs",
+        "target": "https://raw.githubusercontent.com/linyali888/js/main/jctq/jctq_share.js"
+      }
+    },
+    {
+      "name": "晶彩天气福利视频",
+      "type": "cron",
+      "time": "20 8,14,21 * * *",
+      "running": true,
+      "job": {
+        "type": "runjs",
+        "target": "https://raw.githubusercontent.com/linyali888/js/main/jctq/jctq_Adv_video.js"
+      }
+    },
+    {
+      "name": "晶彩天气每日任务宝箱领取",
+      "type": "cron",
+      "time": "4 * * * *",
+      "running": true,
+      "job": {
+        "type": "runjs",
+        "target": "https://raw.githubusercontent.com/linyali888/js/main/jctq/jctqbox.js"
+      }
+    },
+    {
+      "name": "晶彩天气抽奖",
+      "type": "cron",
+      "time": "14 11,22 * * *",
+      "running": true,
+      "job": {
+        "type": "runjs",
+        "target": "https://raw.githubusercontent.com/linyali888/js/main/jctq/jctq_Rotary.js"
+      }
+    },
+    {
+      "name": "晶彩天气每日收益统计",
+      "type": "cron",
+      "time": "22 20,23 * * *",
+      "running": true,
+      "job": {
+        "type": "runjs",
+        "target": "https://raw.githubusercontent.com/linyali888/js/main/jctq/jctq_today_score.js"
+      }
+    }
+  ]
+}
