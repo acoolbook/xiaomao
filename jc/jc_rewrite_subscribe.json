@@ -158,10 +158,10 @@
       "job": {
         "type": "runjs",
         "target": "https://raw.githubusercontent.com/acoolbook/xiaomao/main/jc/jc_today_score.js"
-      {
+      }
     },    
     {
-      "name": "晶彩每日收益统计",
+      "name": "晶彩5 60宝箱",
       "type": "cron",
       "time": "22 10,21 * * *",
       "running": true,
