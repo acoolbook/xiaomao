@@ -53,7 +53,7 @@
     }
     ,
     {
-      "match": "https://kandian.wkandian.com/v17/Ad/getReward.json",
+      "match": "https://ant.xunsl.com/v5/CommonReward/toGetReward.json",
       "target": "https://raw.githubusercontent.com/acoolbook/xiaomao/main/jc/jc_5_60.js",
       "enable": true
     }
