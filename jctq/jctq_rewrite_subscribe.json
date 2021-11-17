@@ -3,7 +3,7 @@
   "type": "rewrite",
   "note": "仅供参考",
   "author": "leaf",
-  "resource": "jctq_rewrite_subscribe.json",
+  "resource": "https://raw.githubusercontent.com/acoolbook/xiaomao/main/jctq/jctq_rewrite_subscribe.json",
   "mitmhost": [
     "tq.xunsl.com"
   ],
