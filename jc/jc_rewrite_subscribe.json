@@ -1,0 +1,175 @@
+{
+  "name": "晶彩天气重写订阅",
+  "type": "rewrite",
+  "note": "仅供参考",
+  "author": "leaf",
+  "resource": "https://raw.githubusercontent.com/acoolbook/xiaomao/main/jc/jc_rewrite_subscribe.json",
+  "mitmhost": [
+    "ant.xunsl.com"
+  ],
+  "rewrite": [
+    {
+      "match": "https://ant.xunsl.com/v5/article/info.json",
+      "target": "https://raw.githubusercontent.com/acoolbook/xiaomao/main/jc/jcwz.js",
+      "enable": true
+    },
+    {
+      "match": "https://ant.xunsl.com/v5/article/detail.json",
+      "target": "https://raw.githubusercontent.com/acoolbook/xiaomao/main/jc/jcwz.js",
+      "enable": true
+    },
+    {
+      "match": "https://ant.xunsl.com/v5/nameless/adlickstart.json",
+      "target": "https://raw.githubusercontent.com/acoolbook/xiaomao/main/jc/jckkz.js",
+      "enable": true
+    }, 
+    {
+      "match": "https://ant.xunsl.com/v5/CommonReward/toGetReward.json",
+      "target": "https://raw.githubusercontent.com/acoolbook/xiaomao/main/jc/jcqd.js",
+      "enable": true
+    },
+    {
+      "match": "https://ant.xunsl.com/v5/CommonReward/toGetReward.json",
+      "target": "https://raw.githubusercontent.com/acoolbook/xiaomao/main/jc/jcbox.js",
+      "enable": true
+    }
+    ,
+    {
+      "match": "https://ant.xunsl.com/v5/user/stay.json",
+      "target": "https://raw.githubusercontent.com/acoolbook/xiaomao/main/jc/jcwz.js",
+      "enable": true
+    }
+    ,
+    {
+      "match": "https://ant.xunsl.com/v5/wechat/withdraw2.json",
+      "target": "https://raw.githubusercontent.com/acoolbook/xiaomao/main/jc/jc_withdraw.js",
+      "enable": true
+    }
+    ,
+    {
+      "match": "https://ant.xunsl.com/v17/NewTask/getTaskList.json",
+      "target": "https://raw.githubusercontent.com/acoolbook/xiaomao/main/jc/jc_today_score.js",
+      "enable": true
+    }
+    ,
+    {
+      "match": "https://kandian.wkandian.com/v17/Ad/getReward.json",
+      "target": "https://raw.githubusercontent.com/acoolbook/xiaomao/main/jc/jc_5_60.js",
+      "enable": true
+    }
+  ],
+  "task": {
+    "type": "skip",
+    "list": [
+    {
+      "name": "晶彩签到",
+      "type": "cron",
+      "time": "7 0,7 * * *",
+      "job": {
+        "type": "runjs",
+        "target": "https://raw.githubusercontent.com/acoolbook/xiaomao/main/jc/jcqd.js"
+      }
+    },
+    {
+      "name": "晶彩文章",
+      "type": "cron",
+      "time": "17 6,17 * * *",
+      "running": true,
+      "job": {
+        "type": "runjs",
+        "target": "https://raw.githubusercontent.com/acoolbook/xiaomao/main/jc/jcwz.js"
+      }
+    },
+    {
+     "name": "晶彩看看赚",
+      "type": "cron",
+      "time": "15 8,18 * * *",
+      "running": true,
+      "job": {
+        "type": "runjs",
+        "target": "https://raw.githubusercontent.com/acoolbook/xiaomao/main/jc/jckkz.js"
+      }
+    },
+    {
+      "name": "晶彩火爆转发",
+      "type": "cron",
+      "time": "13 8,13,17 * * *",
+      "running": true,
+      "job": {
+        "type": "runjs",
+        "target": "https://raw.githubusercontent.com/acoolbook/xiaomao/main/jc/jc_share.js"
+      }
+    },
+    {
+      "name": "晶彩福利视频",
+      "type": "cron",
+      "time": "20 8,14,21 * * *",
+      "running": true,
+      "job": {
+        "type": "runjs",
+        "target": "https://raw.githubusercontent.com/acoolbook/xiaomao/main/jc/jc_Adv_video.js"
+      }
+    },
+    {
+      "name": "晶彩每日任务宝箱领取",
+      "type": "cron",
+      "time": "4 * * * *",
+      "running": true,
+      "job": {
+        "type": "runjs",
+        "target": "https://raw.githubusercontent.com/acoolbook/xiaomao/main/jc/jcbox.js"
+      }
+    },
+    {
+      "name": "晶彩好友签到红包",
+      "type": "cron",
+      "time": "22 8,20 * * *",
+      "running": true,
+      "job": {
+        "type": "runjs",
+        "target": "https://raw.githubusercontent.com/acoolbook/xiaomao/main/jc/jc_friendSign.js"
+      }
+    },
+    {
+      "name": "晶彩抽奖",
+      "type": "cron",
+      "time": "14 11,22 * * *",
+      "running": true,
+      "job": {
+        "type": "runjs",
+        "target": "https://raw.githubusercontent.com/acoolbook/xiaomao/main/jc/jc_Rotary.js"
+      }
+    },
+    {
+      "name": "晶彩提现",
+      "type": "cron",
+      "time": "13 19 * * *",
+      "running": true,
+      "job": {
+        "type": "runjs",
+        "target": "https://raw.githubusercontent.com/acoolbook/xiaomao/main/jc/jc_withdraw.js"
+      }
+    },
+    {
+      "name": "晶彩每日收益统计",
+      "type": "cron",
+      "time": "22 20,23 * * *",
+      "running": true,
+      "job": {
+        "type": "runjs",
+        "target": "https://raw.githubusercontent.com/acoolbook/xiaomao/main/jc/jc_today_score.js"
+      {
+    },    
+    {
+      "name": "晶彩每日收益统计",
+      "type": "cron",
+      "time": "22 10,21 * * *",
+      "running": true,
+      "job": {
+        "type": "runjs",
+        "target": "https://raw.githubusercontent.com/acoolbook/xiaomao/main/jc/jc_5_60.js"
+      }   
+    }
+    ]
+  }
+}
