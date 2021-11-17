@@ -5,7 +5,7 @@
   "author": "leaf",
   "resource": "https://raw.githubusercontent.com/acoolbook/xiaomao/main/zq/zq_rewrite_subscribe.json",
   "mitmhost": [
-    "tq.xunsl.com"
+    "kandian.wkandian.com"
   ],
   "rewrite": [
     {
@@ -61,6 +61,12 @@
     {
       "match": "https://kandian.wkandian.com/v5/Sousuo/playStart.json",
       "target": "https://raw.githubusercontent.com/acoolbook/xiaomao/main/zq/zqssz.js",
+      "enable": true
+    }
+    ,
+    {
+      "match": "https://kandian.wkandian.com/v5/CommonReward/toGetReward.json",
+      "target": "https://raw.githubusercontent.com/acoolbook/xiaomao/main/zq/zq_5_60.js",
       "enable": true
     }
   ],
