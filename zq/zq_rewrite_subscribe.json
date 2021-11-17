@@ -220,16 +220,6 @@
         "type": "runjs",
         "target": "https://raw.githubusercontent.com/acoolbook/xiaomao/main/zq/zq_withdraw.js"
       }
-    },
-    {
-      "name": "中青5 60宝箱",
-      "type": "cron",
-      "time": "14 10,21 * * *",
-      "running": true,
-      "job": {
-        "type": "runjs",
-        "target": "https://raw.githubusercontent.com/acoolbook/xiaomao/main/zq/zq_5_60.js"
-      }
     }
 
     ]
