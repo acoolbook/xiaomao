@@ -3,7 +3,7 @@
   "desc": "无",
   "date": "2021-08-05 20:32:08",
   "author": "https://t.me/ShaolinTemple1",
-  "resource": "https://raw.githubusercontent.com/acoolbook/xiaomao/main/zq_cron.json",
+  "resource": "https://raw.githubusercontent.com/acoolbook/xiaomao/main/zq/zq_cron.json",
   "list": [
     {
       "name": "中青签到",
@@ -11,7 +11,7 @@
       "time": "6 0,7 * * *",
       "job": {
         "type": "runjs",
-        "target": "https://raw.githubusercontent.com/shaolin-kongfu/js_scripts/main/zq/zqqd.js"
+        "target": "https://raw.githubusercontent.com/acoolbook/xiaomao/main/zq/zqqd.js"
       }
     },
     {
@@ -30,7 +30,7 @@
       "running": true,
       "job": {
         "type": "runjs",
-        "target": "https://raw.githubusercontent.com/shaolin-kongfu/js_scripts/main/zq/zqwz.js"
+        "target": "https://raw.githubusercontent.com/acoolbook/xiaomao/main/zq/zqwz.js"
       }
     },
     {
@@ -40,7 +40,7 @@
       "running": true,
       "job": {
         "type": "runjs",
-        "target": "https://raw.githubusercontent.com/shaolin-kongfu/js_scripts/main/zq/zqkkz.js"
+        "target": "https://raw.githubusercontent.com/acoolbook/xiaomao/main/zq/zqkkz.js"
       }
     },
     {
@@ -50,7 +50,7 @@
       "running": true,
       "job": {
         "type": "runjs",
-        "target": "https://raw.githubusercontent.com/shaolin-kongfu/js_scripts/main/zq/zq_share.js"
+        "target": "https://raw.githubusercontent.com/acoolbook/xiaomao/main/zq/zq_share.js"
       }
     },
     {
@@ -60,7 +60,7 @@
       "running": true,
       "job": {
         "type": "runjs",
-        "target": "https://raw.githubusercontent.com/shaolin-kongfu/js_scripts/main/zq/zq_Adv_video.js"
+        "target": "https://raw.githubusercontent.com/acoolbook/xiaomao/main/zq/zq_Adv_video.js"
       }
     },
     {
@@ -70,7 +70,7 @@
       "running": true,
       "job": {
         "type": "runjs",
-        "target": "https://raw.githubusercontent.com/shaolin-kongfu/js_scripts/main/zq/zqbox.js"
+        "target": "https://raw.githubusercontent.com/acoolbook/xiaomao/main/zq/zqbox.js"
       }
     },
     {
@@ -80,7 +80,7 @@
       "running": true,
       "job": {
         "type": "runjs",
-        "target": "https://raw.githubusercontent.com/shaolin-kongfu/js_scripts/main/zq/zq_today_score.js"
+        "target": "https://raw.githubusercontent.com/acoolbook/xiaomao/main/zq/zq_today_score.js"
       }
     },
     {
@@ -90,7 +90,7 @@
       "running": true,
       "job": {
         "type": "runjs",
-        "target": "https://raw.githubusercontent.com/shaolin-kongfu/js_scripts/main/zq/zq_friendSign.js"
+        "target": "https://raw.githubusercontent.com/acoolbook/xiaomao/main/zq/zq_friendSign.js"
       }
     },
     {
@@ -100,7 +100,7 @@
       "running": true,
       "job": {
         "type": "runjs",
-        "target": "https://raw.githubusercontent.com/shaolin-kongfu/js_scripts/main/zq/zq_Rotary.js"
+        "target": "https://raw.githubusercontent.com/acoolbook/xiaomao/main/zq/zq_Rotary.js"
       }
     },
     {
@@ -110,7 +110,7 @@
       "running": true,
       "job": {
         "type": "runjs",
-        "target": "https://raw.githubusercontent.com/shaolin-kongfu/js_scripts/main/zq/zq_wakeup.js"
+        "target": "https://raw.githubusercontent.com/acoolbook/xiaomao/main/zq/zq_wakeup.js"
       }
     },
     {
@@ -120,7 +120,7 @@
       "running": true,
       "job": {
         "type": "runjs",
-        "target": "https://raw.githubusercontent.com/shaolin-kongfu/js_scripts/main/zq/zqssz.js"
+        "target": "https://raw.githubusercontent.com/acoolbook/xiaomao/main/zq/zqssz.js"
       }
     },
     {
@@ -130,7 +130,7 @@
       "running": true,
       "job": {
         "type": "runjs",
-        "target": "https://raw.githubusercontent.com/shaolin-kongfu/js_scripts/main/zq/zqllz.js"
+        "target": "https://raw.githubusercontent.com/acoolbook/xiaomao/main/zq/zqllz.js"
       }
     },
     {
@@ -140,7 +140,7 @@
       "running": true,
       "job": {
         "type": "runjs",
-        "target": "https://raw.githubusercontent.com/shaolin-kongfu/js_scripts/main/zq/zq_double.js"
+        "target": "https://raw.githubusercontent.com/acoolbook/xiaomao/main/zq/zq_double.js"
       }
     },
     {
@@ -150,7 +150,16 @@
       "running": true,
       "job": {
         "type": "runjs",
-        "target": "https://raw.githubusercontent.com/shaolin-kongfu/js_scripts/main/zq/zq_withdraw.js"
+        "target": "https://raw.githubusercontent.com/acoolbook/xiaomao/main/zq/zq_withdraw.js"
+      },
+    {
+      "name": "中青5 60宝箱",
+      "type": "cron",
+      "time": "14 10,21 * * *",
+      "running": true,
+      "job": {
+        "type": "runjs",
+        "target": "https://raw.githubusercontent.com/acoolbook/xiaomao/main/zq/zq_5_60.js"
       }
     }
 
