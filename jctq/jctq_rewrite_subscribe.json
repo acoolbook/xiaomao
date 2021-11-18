@@ -61,6 +61,12 @@
     "stage": "req",
     "target": "https://raw.githubusercontent.com/acoolbook/xiaomao/main/jctq/jctq_rewrite.js",
     "enable": true
+    },
+    {
+    "match": "https://tq.xunsl.com/v5/CommonReward/toDouble.json",
+    "stage": "req",
+    "target": "https://raw.githubusercontent.com/acoolbook/xiaomao/main/jctq/jctq_rewrite.js",
+    "enable": true
     }
   ],
   "task": {
@@ -69,7 +75,7 @@
         {
             "name": "晶彩天气看看赚",
             "type": "cron",
-            "time": "20 8,20 * * *",
+            "time": "13 8,20 * * *",
             "job": {
                 "type": "runjs",
                 "target": "https://raw.githubusercontent.com/acoolbook/xiaomao/main/jctq/jctq_kkz.js"
@@ -87,7 +93,7 @@
         {
             "name": "晶彩天气日常任务",
             "type": "cron",
-            "time": "8,38 6-22/1 * * *",
+            "time": "8,28,38 6-22/1 * * *",
             "job": {
                 "type": "runjs",
                 "target": "https://raw.githubusercontent.com/acoolbook/xiaomao/main/jctq/jctq_daily.js"
