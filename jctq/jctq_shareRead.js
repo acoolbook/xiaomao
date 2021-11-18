@@ -21,7 +21,7 @@ let jctqCookieArr = []
 let userCk = ''
 let readCount = 0
 
-let jctqShareNum = ($.isNode() ? process.env.jctqShareNum : $.getdata('jctqShareNum')) || 5;
+let jctqShareNum = ($.isNode() ? process.env.jctqShareNum : $.getdata('jctqShareNum')) || 3;
 
 let newsItem = ''
 let UserAgent = ''
