@@ -101,6 +101,15 @@
                 "type": "runjs",
                 "target": "https://raw.githubusercontent.com/acoolbook/xiaomao/main/jctq/jctq_reward.js"
             }
+        },
+        {
+            "name": "晶彩天气转发分享",
+            "type": "cron",
+            "time": "10 6,12,19 * * *",
+            "job": {
+                "type": "runjs",
+                "target": "https://raw.githubusercontent.com/acoolbook/xiaomao/main/jctq/jctq_shareRead.js"
+            }
         }
     ]
   }
