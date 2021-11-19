@@ -226,6 +226,16 @@
         "type": "runjs",
         "target": "https://raw.githubusercontent.com/acoolbook/xiaomao/main/zq/zq_withdraw.js"
       }
+    },
+    {
+      "name": "中青音乐",
+      "type": "cron",
+      "time": "9 9-18 * * *",
+      "running": true,
+      "job": {
+        "type": "runjs",
+        "target": "https://raw.githubusercontent.com/acoolbook/xiaomao/main/zq/zq_music.js"
+      }
     }
 
     ]
