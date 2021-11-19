@@ -69,6 +69,12 @@
       "target": "https://raw.githubusercontent.com/acoolbook/xiaomao/main/zq/zq_5_60.js",
       "enable": true
     }
+    ,
+    {
+      "match": "https://kandian.wkandian.com/V17/Ximalaya/setCompleteSec.json",
+      "target": "https://raw.githubusercontent.com/acoolbook/xiaomao/main/zq/zq_music.js",
+      "enable": true
+    }
   ],
   "task": {
     "type": "skip",
