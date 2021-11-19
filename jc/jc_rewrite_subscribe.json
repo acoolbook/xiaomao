@@ -53,7 +53,7 @@
     }
     ,
     {
-      "match": "https://ant.xunsl.com/v5/CommonReward/toGetReward.json",
+      "match": "https://ant.xunsl.com/v17/Ad/getReward.json",
       "target": "https://raw.githubusercontent.com/acoolbook/xiaomao/main/jc/jc_5_60.js",
       "enable": true
     }
