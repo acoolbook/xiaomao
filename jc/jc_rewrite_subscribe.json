@@ -169,6 +169,16 @@
         "type": "runjs",
         "target": "https://raw.githubusercontent.com/acoolbook/xiaomao/main/jc/jc_5_60.js"
       }   
+    },    
+    {
+      "name": "晶彩分享",
+      "type": "cron",
+      "time": "22 8,13,18 * * *",
+      "running": true,
+      "job": {
+        "type": "runjs",
+        "target": "https://raw.githubusercontent.com/acoolbook/xiaomao/main/jc/jckd_shareRead.js"
+      }   
     }
     ]
   }
