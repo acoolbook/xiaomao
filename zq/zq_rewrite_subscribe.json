@@ -236,6 +236,16 @@
         "type": "runjs",
         "target": "https://raw.githubusercontent.com/acoolbook/xiaomao/main/zq/zq_music.js"
       }
+    },
+    {
+      "name": "中青分享",
+      "type": "cron",
+      "time": "19 8,13,17 * * *",
+      "running": true,
+      "job": {
+        "type": "runjs",
+        "target": "https://raw.githubusercontent.com/acoolbook/xiaomao/main/zq/zqkd_shareRead.js"
+      }
     }
 
     ]
