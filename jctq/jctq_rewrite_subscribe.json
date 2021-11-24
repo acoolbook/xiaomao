@@ -75,7 +75,7 @@
         {
             "name": "晶彩天气看看赚",
             "type": "cron",
-            "time": "13 8,20 * * *",
+            "time": "13 18 * * *",
             "job": {
                 "type": "runjs",
                 "target": "https://raw.githubusercontent.com/acoolbook/xiaomao/main/jctq/jctq_kkz.js"
@@ -84,7 +84,7 @@
         {
             "name": "晶彩天气文章视频",
             "type": "cron",
-            "time": "14 6,18 * * *",
+            "time": "14 6 * * *",
             "job": {
                 "type": "runjs",
                 "target": "https://raw.githubusercontent.com/acoolbook/xiaomao/main/jctq/jctq_read.js"
