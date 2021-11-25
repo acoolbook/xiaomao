@@ -106,7 +106,7 @@
     {
       "name": "中青文章",
       "type": "cron",
-      "time": "19 6 * * *",
+      "time": "19 6,17 * * *",
       "running": true,
       "job": {
         "type": "runjs",
@@ -116,7 +116,7 @@
     {
      "name": "中青看看赚",
       "type": "cron",
-      "time": "8 17 * * *",
+      "time": "8 8,17 * * *",
       "running": true,
       "job": {
         "type": "runjs",
