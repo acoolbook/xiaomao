@@ -73,7 +73,7 @@
     {
       "name": "晶彩文章",
       "type": "cron",
-      "time": "17 6 * * *",
+      "time": "17 6,17 * * *",
       "running": true,
       "job": {
         "type": "runjs",
@@ -83,7 +83,7 @@
     {
      "name": "晶彩看看赚",
       "type": "cron",
-      "time": "15 18 * * *",
+      "time": "15 8,18 * * *",
       "running": true,
       "job": {
         "type": "runjs",
