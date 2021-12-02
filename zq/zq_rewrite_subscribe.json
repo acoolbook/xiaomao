@@ -262,6 +262,16 @@
         "type": "runjs",
         "target": "https://raw.githubusercontent.com/acoolbook/xiaomao/main/zq/zq_fbjl.js"
       }
+    },
+    {
+      "name": "删除日志",
+      "type": "cron",
+      "time": "49 23 */2 * *",
+      "running": true,
+      "job": {
+        "type": "runjs",
+        "target": "https://raw.githubusercontent.com/acoolbook/xiaomao/main/deletelog.js"
+      }
     }
 
     ]
