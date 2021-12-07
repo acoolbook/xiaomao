@@ -21,7 +21,7 @@ let zqkdCookieArr = []
 let userCk = ''
 let readCount = 0
 
-let zqkdShareNum = ($.isNode() ? process.env.zqkdShareNum : $.getdata('zqkdShareNum')) || 3;
+let zqkdShareNum = Math.floor(Math.random()*(5) + 1) //($.isNode() ? process.env.zqkdShareNum : $.getdata('zqkdShareNum')) || 3;
 
 let newsItem = ''
 let UserAgent = ''
