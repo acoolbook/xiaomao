@@ -26,9 +26,9 @@ let CONFIG = {
     'Todo',                // 排除单个文件，使用文件名包含的关键字即可
     '^\\.',                // 也可以使用正则表示式。匹配方式为 new RegExp(str).test(fileurl)
   ],
-  wbtoken: 'a8c259b2-67fe-4c64-8700-7bfdf1f55cb3',    // WEBHOOK TOKEN（在 SETTING 界面查看）用于发送保存当前任务列表的网络请求，可省略。
+  wbtoken: '',    // WEBHOOK TOKEN（在 SETTING 界面查看）用于发送保存当前任务列表的网络请求，可省略。
   cdngit: 'https://cdn.jsdelivr.net',        // 可自定义 raw.githubusercontent.com 加速站点
-  about: 'elecV2P 软更新配置文件，详情: https://raw.githubusercontent.com/elecV2/elecV2P/master/script/JSFile/softupdate.js'
+  about: 'elecV2P 软更新配置文件，详情: https://raw.githubusercontent.com/acoolbook/xiaomao/main/softupdate.js'
 }
 
 if (CONFIG.cdngit.endsWith('/')) {
