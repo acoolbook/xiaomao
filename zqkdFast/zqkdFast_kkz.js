@@ -47,15 +47,15 @@ let stopFlag = 0
         for(userIdx=0; userIdx < userCount; userIdx++) {
             console.log('======================')
             await adlickstart(userIdx)
-            await $.wait(8000)
+            await $.wait(11000)
             for(let i=0; i<6; i++) {
                 await bannerstatus(userIdx)
-                await $.wait(5100)
+                await $.wait(11200)
             }
             stopFlag = 0
             while(stopFlag==0) {
                 await adlickend(userIdx)
-                await $.wait(6300)
+                await $.wait(15000)
             }
         }
     }
