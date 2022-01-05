@@ -6,22 +6,15 @@
 脚本会自动提现，如果不想自动提现的，请不要捉提现body，或者新建环境变量zqkdFastWithdrawFlag，写成0
 
 重写：
-https://tq.xunsl.com/v17/NewTask/getTaskListByWeather.json  -- 点开福利页即可获取zqkdFastCookie
-https://tq.xunsl.com/v5/CommonReward/toGetReward.json       -- 签到，和福利页任务奖励（目前应该只有激励视频和20篇文章的奖励），获取完建议关掉重写
-https://tq.xunsl.com/v5/article/info.json                   -- 点开文章获取文章body，获取完建议关掉重写
-https://tq.xunsl.com/v5/article/detail.json                 -- 点开视频获取视频body，获取完建议关掉重写
-https://tq.xunsl.com/v5/user/stay.json                      -- 阅读文章或者看视频一段时间后可以获取到时长body，获取完务必关掉重写
-https://tq.xunsl.com/v5/nameless/adlickstart.json           -- 点开看看赚获取body，可以一直开着，脚本会自动删除重复和失效body
-https://tq.xunsl.com/v5/Weather/giveBoxOnWeather.json       -- 点开福利页浮窗宝箱和观看翻倍视频获取body，获取完建议关掉重写
-https://tq.xunsl.com/v5/weather/giveTimeInterval.json       -- 点开首页气泡红包和观看翻倍视频获取body，获取完建议关掉重写
-https://tq.xunsl.com/v5/wechat/withdraw2.json               -- 提现一次对应金额获取body
-https://tq.xunsl.com/v5/CommonReward/toDouble.json          -- 领取签到翻倍奖励后可获取
+https://user.youth.cn/FastApi/CommonReward/toGetReward.json   宝箱
+https://user.youth.cn/v1/Nameless/adlickstart.json            签到
+
+
 https://raw.githubusercontent.com/acoolbook/xiaomao/main/zqkdFast/zqkdFast_rewrite.js
 任务：
-zqkdFast_daily.js   -- 领转发页定时宝箱，领福利页定时宝箱，领首页气泡红包，时段转发，刷福利视频，抽奖5次
+
 zqkdFast_reward.js  -- 签到和翻倍，任务奖励领取，统计今日收益，自动提现
-zqkdFast_kkz.js     -- 完成看看赚任务，删除重复和失效的body
-zqkdFast_read.js    -- 阅读文章，浏览视频
+
 
 */
 
@@ -30,9 +23,9 @@ const $ = Env(jsname)
 const notifyFlag = 1; //0为关闭通知，1为打开通知,默认为1
 const logDebug = 0
 
-//let zqkdFastCookie = ($.isNode() ? process.env.zqkdFastCookie : $.getdata('zqkdFastCookie')) || '';
+
 let zqkdFastjczxBoxbody = ($.isNode() ? process.env.zqkdFastjczxBoxbody : $.getdata('zqkdFastjczxBoxbody')) || '';
-let zqkdFastqdbody = ($.isNode() ? process.env.zqkdFastqdBoxbody : $.getdata('zqkdFastqdBoxbody')) || '';
+let zqkdFastqdBoxbody = ($.isNode() ? process.env.zqkdFastqdBoxbody : $.getdata('zqkdFastqdBoxbody')) || '';
 
 ///////////////////////////////////////////////////////////////////
 
@@ -93,19 +86,19 @@ async function getRewrite() {
     }
     
 
-        if($request.url.indexOf('/v1/Nameless/adlickstart.json') > -1) {//精彩资讯，时段奖励
+        if($request.url.indexOf('/v1/Nameless/adlickstart.json') > -1) {//签到
         rBody = $request.body
-        if(zqkdFastjczxBoxbody) {
-            if(zqkdFastjczxBoxbody.indexOf(rBody) > -1) {
+        if(zqkdFastqdBoxbody) {
+            if(zqkdFastqdBoxbody.indexOf(rBody) > -1) {
                 $.msg(jsname+` 此签到body已存在，本次跳过`)
             } else {
-                zqkdFastjczxBoxbody = zqkdFastjczxBoxbody + '@' + rBody
-                $.setdata(zqkdFastjczxBoxbody, 'zqkdFastjczxBoxbody');
-                bodyList = zqkdFastjczxBoxbody.split('@')
+                zqkdFastqdBoxbody = zqkdFastqdBoxbody + '@' + rBody
+                $.setdata(zqkdFastqdBoxbody, 'zqkdFastqdBoxbody');
+                bodyList = zqkdFastqdBoxbody.split('@')
                 $.msg(jsname+` 获取第${bodyList.length}个签到body成功`)
             }
         } else {
-            $.setdata(rBody, 'zqkdFastjczxBoxbody');
+            $.setdata(rBody, 'zqkdFastqdBoxbody');
             $.msg(jsname+` 获取第1个签到body成功`)
         }
     }
