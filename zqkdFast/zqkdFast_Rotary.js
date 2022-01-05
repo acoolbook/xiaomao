@@ -1,8 +1,8 @@
 /*
 shaolin-kongfu
 
-软件名称：中青极速版
-赞赏:邀请码1037643305
+软件名称：中青看点
+赞赏:邀请码57984759
 万分感谢！！
 
 
@@ -64,7 +64,7 @@ Object.keys(zqkdFastCookies).forEach((item) => {
                 console.log("\n\n")
 
                 for(let k = 0 ; k < 20 ; k++){
-                    await Rotary(zqkdFastCookie1,cookie_id,time)
+                    if (!(await Rotary(zqkdFastCookie1,cookie_id,time))) break 
                     await $.wait(6000);
                     console.log("\n\n")
                 }
@@ -89,7 +89,7 @@ function Rotary(zqkdFastCookie1,cookie_id,time) {
             headers : {'Host': 'user.youth.cn',
                 'Referer':'https://user.youth.cn/h5/fastAppWeb/rotaryTable/index.html?'+zqkdFastCookie1
             },
-            body: zqkdFastCookie1//cookie_id,
+            body: zqkdFastCookie1 //cookie_id,
         }
         $.post(url, async (err, resp, data) => {
             try {
@@ -110,7 +110,7 @@ function Rotary(zqkdFastCookie1,cookie_id,time) {
   
                 } else if (result.status === 0) {
                     console.log(result.msg)
-                    return;
+                    return false
                 }
             } catch (e) {
                 $.logErr(e+resp);
