@@ -16,7 +16,7 @@ https://tq.xunsl.com/v5/Weather/giveBoxOnWeather.json       -- 点开福利页�
 https://tq.xunsl.com/v5/weather/giveTimeInterval.json       -- 点开首页气泡红包和观看翻倍视频获取body，获取完建议关掉重写
 https://tq.xunsl.com/v5/wechat/withdraw2.json               -- 提现一次对应金额获取body
 https://tq.xunsl.com/v5/CommonReward/toDouble.json          -- 领取签到翻倍奖励后可获取
-
+https://raw.githubusercontent.com/acoolbook/xiaomao/main/zqkdFast/zqkdFast_rewrite.js
 任务：
 zqkdFast_daily.js   -- 领转发页定时宝箱，领福利页定时宝箱，领首页气泡红包，时段转发，刷福利视频，抽奖5次
 zqkdFast_reward.js  -- 签到和翻倍，任务奖励领取，统计今日收益，自动提现
@@ -81,7 +81,7 @@ async function getRewrite() {
         }
     }
     
-    if($request.url.indexOf('FastApi/CommonReward/toGetReward.json') > -1) {//精彩资讯
+    if($request.url.indexOf('FastApi/CommonReward/toGetReward.json') > -1) {//精彩资讯，时段奖励
         rBody = $request.body
         if(zqkdFastjczxBoxbody) {
             if(zqkdFastjczxBoxbody.indexOf(rBody) > -1) {
@@ -98,110 +98,17 @@ async function getRewrite() {
         }
     }
     
-    if($request.url.indexOf('v5/article/info.json') > -1 || 
-       $request.url.indexOf('v5/article/detail.json') > -1) {
-        rUrl = $request.url
-        bodys = rUrl.split('?p=')
-        rBody = 'p=' + bodys[1]
-        if(zqkdFastWzBody) {
-            if(zqkdFastWzBody.indexOf(rBody) > -1) {
-                $.msg(jsname+` 此文章/视频body已存在，本次跳过`)
-            } else {
-                zqkdFastWzBody = zqkdFastWzBody + '&' + rBody
-                $.setdata(zqkdFastWzBody, 'zqkdFastWzBody');
-                bodyList = zqkdFastWzBody.split('&')
-                $.msg(jsname+` 获取第${bodyList.length}个文章/视频body成功`)
-            }
-        } else {
-            $.setdata(rBody, 'zqkdFastWzBody');
-            $.msg(jsname+` 获取第1个文章/视频body成功`)
-        }
-    }
+
     
-    if($request.url.indexOf('v5/user/stay.json') > -1) {
-        rBody = $request.body
-        if(zqkdFastTimeBody) {
-            if(zqkdFastTimeBody.indexOf(rBody) > -1) {
-                $.msg(jsname+` 此时长body已存在，本次跳过`)
-            } else {
-                zqkdFastTimeBody = zqkdFastTimeBody + '&' + rBody
-                $.setdata(zqkdFastTimeBody, 'zqkdFastTimeBody');
-                bodyList = zqkdFastTimeBody.split('&')
-                $.msg(jsname+` 获取第${bodyList.length}个时长body成功`)
-            }
-        } else {
-            $.setdata(rBody, 'zqkdFastTimeBody');
-            $.msg(jsname+` 获取第1个时长body成功`)
-        }
-    }
+
+
+
     
-    if($request.url.indexOf('v5/nameless/adlickstart.json') > -1) {
-        rBody = $request.body
-        if(zqkdFastLookStartbody) {
-            if(zqkdFastLookStartbody.indexOf(rBody) > -1) {
-                $.msg(jsname+` 此看看赚body已存在，本次跳过`)
-            } else {
-                zqkdFastLookStartbody = zqkdFastLookStartbody + '&' + rBody
-                $.setdata(zqkdFastLookStartbody, 'zqkdFastLookStartbody');
-                bodyList = zqkdFastLookStartbody.split('&')
-                $.msg(jsname+` 获取第${bodyList.length}个看看赚body成功`)
-            }
-        } else {
-            $.setdata(rBody, 'zqkdFastLookStartbody');
-            $.msg(jsname+` 获取第1个看看赚body成功`)
-        }
-    }
+
     
-    if($request.url.indexOf('v5/wechat/withdraw2.json') > -1) {
-        rBody = $request.body
-        if(zqkdFastWithdraw) {
-            if(zqkdFastWithdraw.indexOf(rBody) > -1) {
-                $.msg(jsname+` 此提现body已存在，本次跳过`)
-            } else {
-                zqkdFastWithdraw = zqkdFastWithdraw + '&' + rBody
-                $.setdata(zqkdFastWithdraw, 'zqkdFastWithdraw');
-                bodyList = zqkdFastWithdraw.split('&')
-                $.msg(jsname+` 获取第${bodyList.length}个提现body成功`)
-            }
-        } else {
-            $.setdata(rBody, 'zqkdFastWithdraw');
-            $.msg(jsname+` 获取第1个提现body成功`)
-        }
-    }
+
     
-    if($request.url.indexOf('v5/Weather/giveBoxOnWeather.json') > -1) {
-        rBody = $request.body
-        if(zqkdFastGiveBoxBody) {
-            if(zqkdFastGiveBoxBody.indexOf(rBody) > -1) {
-                $.msg(jsname+` 此福利页宝箱/翻倍body已存在，本次跳过`)
-            } else {
-                zqkdFastGiveBoxBody = zqkdFastGiveBoxBody + '&' + rBody
-                $.setdata(zqkdFastGiveBoxBody, 'zqkdFastGiveBoxBody');
-                bodyList = zqkdFastGiveBoxBody.split('&')
-                $.msg(jsname+` 获取第${bodyList.length}个福利页宝箱/翻倍body成功`)
-            }
-        } else {
-            $.setdata(rBody, 'zqkdFastGiveBoxBody');
-            $.msg(jsname+` 获取第1个福利页宝箱/翻倍body成功`)
-        }
-    }
-    
-    if($request.url.indexOf('v5/weather/giveTimeInterval.json') > -1) {
-        rBody = $request.body
-        if(zqkdFastBubbleBody) {
-            if(zqkdFastBubbleBody.indexOf(rBody) > -1) {
-                $.msg(jsname+` 此首页气泡/翻倍body已存在，本次跳过`)
-            } else {
-                zqkdFastBubbleBody = zqkdFastBubbleBody + '&' + rBody
-                $.setdata(zqkdFastBubbleBody, 'zqkdFastBubbleBody');
-                bodyList = zqkdFastBubbleBody.split('&')
-                $.msg(jsname+` 获取第${bodyList.length}个首页气泡/翻倍body成功`)
-            }
-        } else {
-            $.setdata(rBody, 'zqkdFastBubbleBody');
-            $.msg(jsname+` 获取第1个首页气泡/翻倍body成功`)
-        }
-    }
+
     
     if($request.url.indexOf('v5/CommonReward/toDouble.json') > -1) {
         rBody = $request.body
