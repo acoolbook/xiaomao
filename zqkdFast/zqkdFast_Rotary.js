@@ -110,7 +110,7 @@ function Rotary(zqkdFastCookie1,cookie_id,time) {
   
                 } else if (result.status === 0) {
                     console.log(result.msg)
-                    result
+                    return;
                 }
             } catch (e) {
                 $.logErr(e+resp);
