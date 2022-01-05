@@ -87,9 +87,9 @@ async function getRewrite() {
             if(zqkdFastjczxBoxbody.indexOf(rBody) > -1) {
                 $.msg(jsname+` 此签到/奖励body已存在，本次跳过`)
             } else {
-                zqkdFastjczxBoxbody = zqkdFastjczxBoxbody + '&' + rBody
+                zqkdFastjczxBoxbody = zqkdFastjczxBoxbody + '@' + rBody
                 $.setdata(zqkdFastjczxBoxbody, 'zqkdFastjczxBoxbody');
-                bodyList = zqkdFastjczxBoxbody.split('&')
+                bodyList = zqkdFastjczxBoxbody.split('@')
                 $.msg(jsname+` 获取第${bodyList.length}个签到/奖励body成功`)
             }
         } else {
