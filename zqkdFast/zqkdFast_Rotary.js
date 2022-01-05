@@ -64,7 +64,7 @@ Object.keys(zqkdFastCookies).forEach((item) => {
                 console.log("\n\n")
 
                 for(let k = 0 ; k < 20 ; k++){
-                    if (!(await Rotary(zqkdFastCookie1,cookie_id,time))) break 
+                    await Rotary(zqkdFastCookie1,cookie_id,time) 
                     await $.wait(6000);
                     console.log("\n\n")
                 }
