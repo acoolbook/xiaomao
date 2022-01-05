@@ -19,7 +19,7 @@ const updateStr = '2022.01.05 11:18 增加延迟'
 let rndtime = "" //毫秒
 let httpResult //global buffer
 
-let zqkdFastShareNum = ($.isNode() ? process.env.zqkdFastShareNum : $.getdata('zqkdFastShareNum')) || 0;
+let zqkdFastShareNum = ($.isNode() ? process.env.zqkdFastShareNum : $.getdata('zqkdFastShareNum')) || 3;
 let userCookie = ($.isNode() ? process.env.zqkdFastCookie : $.getdata('zqkdFastCookie')) || '';
 let userCookieArr = []
 
