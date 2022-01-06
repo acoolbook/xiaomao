@@ -37,7 +37,7 @@ let turnNum = []
         
         console.log('\n准备PK')
         for(userIdx=0; userIdx < userCount; userIdx++) {
-            await GetFightList(userIdx)
+            for (i=0; i<5; i++) await GetFightList(userIdx)
         }
         
         console.log('\n准备抽奖')
