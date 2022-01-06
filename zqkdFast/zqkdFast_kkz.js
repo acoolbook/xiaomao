@@ -47,15 +47,15 @@ let stopFlag = 0
         for(userIdx=0; userIdx < userCount; userIdx++) {
             console.log('======================')
             await adlickstart(userIdx)
-            await $.wait(11000)
+            await $.wait(4300)
             for(let i=0; i<6; i++) {
                 await bannerstatus(userIdx)
-                await $.wait(11200)
+                await $.wait(6500)
             }
             stopFlag = 0
             while(stopFlag==0) {
                 await adlickend(userIdx)
-                await $.wait(15000)
+                await $.wait(4000)
             }
         }
     }
@@ -111,6 +111,7 @@ async function GetRewrite() {
 async function adlickstart(idx) {
     let caller = printCaller()
     let body = userBodyArr[userIdx]
+    let uid = body.match(/uid=(\w+)/)[1]
     let url = 'https://user.youth.cn/v1/Nameless/adlickstart.json'
     let urlObject = populatePostUrl(url,body)
     await httpPost(urlObject,caller)
@@ -118,15 +119,16 @@ async function adlickstart(idx) {
     if(!result) return
     
     if(result.error_code == 0) {
-        console.log(`用户${idx+1}开始看看赚任务[${result.items.banner_id}]`)
+        console.log(`用户${idx+1}[${uid}]开始看看赚任务[${result.items.banner_id}]`)
     } else {
-        console.log(`用户${idx+1}开始看看赚任务失败：${result.message}`)
+        console.log(`用户${idx+1}[${uid}]开始看看赚任务失败：${result.message}`)
     }
 }
 
 async function bannerstatus(idx) {
     let caller = printCaller()
     let body = userBodyArr[userIdx]
+    let uid = body.match(/uid=(\w+)/)[1]
     let url = 'https://user.youth.cn/v1/Nameless/bannerstatus.json'
     let urlObject = populatePostUrl(url,body)
     await httpPost(urlObject,caller)
@@ -134,15 +136,16 @@ async function bannerstatus(idx) {
     if(!result) return
     
     if(result.error_code == 0) {
-        console.log(`用户${idx+1}阅读看看赚文章中[${result.items.banner_id}]`)
+        console.log(`用户${idx+1}[${uid}]阅读看看赚文章中[${result.items.banner_id}]`)
     } else {
-        console.log(`用户${idx+1}阅读看看赚文章失败：${result.message}`)
+        console.log(`用户${idx+1}[${uid}]阅读看看赚文章失败：${result.message}`)
     }
 }
 
 async function adlickend(idx) {
     let caller = printCaller()
     let body = userBodyArr[userIdx]
+    let uid = body.match(/uid=(\w+)/)[1]
     let url = 'https://user.youth.cn/v1/Nameless/adlickend.json'
     let urlObject = populatePostUrl(url,body)
     await httpPost(urlObject,caller)
@@ -150,12 +153,12 @@ async function adlickend(idx) {
     if(!result) return
     
     if(result.error_code == 0) {
-        console.log(`用户${idx+1}获得${result.items.score}青豆`)
+        console.log(`用户${idx+1}[${uid}]获得${result.items.score}青豆`)
         if(result.items.score==0) {
             stopFlag = 1
         }
     } else {
-        console.log(`用户${idx+1}完成看看赚任务失败：${result.message}`)
+        console.log(`用户${idx+1}[${uid}]完成看看赚任务失败：${result.message}`)
         stopFlag = 1
     }
 }
@@ -165,7 +168,7 @@ function populatePostUrl(url,reqBody){
     let urlObject = {
         url: url,
         headers: {
-            'User-Agent' : 'Mozilla/5.0 (Linux; Android 5.1; OPPO R9tm Build/LMY47I; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/43.0.2357.121 Mobile Safari/537.36 hap/1.0.8.1/oppo com.nearme.instant.platform/4.2.1 com.youth.kandianquickapp/2.5.5 ({"packageName":"com.oppo.launcher","type":"shortcut","extra":{"original":{"packageName":"com.oppo.market","type":"sdk","extra":{}},"scene":"api"}})',
+            'User-Agent' : 'Mozilla/5.0 (Linux; Android 11; M2012K11AC Build/RKQ1.200826.002; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/96.0.4664.104 Mobile Safari/537.36 hap/1.9/xiaomi com.miui.hybrid/1.9.0.1 com.youth.kandianquickapp/2.5.5 ({"packageName":"com.miui.home","type":"shortcut","extra":{"original":{"packageName":"com.xiaomi.market","type":"other","extra":{}},"scene":"api"}})',
             'Accept-Language' : 'zh-CN,zh;q=0.9,en;q=0.8',
             'Content-Type' : 'application/x-www-form-urlencoded; charset=utf-8',
             'Host' : 'user.youth.cn',
@@ -181,7 +184,7 @@ function populateGetUrl(url){
     let urlObject = {
         url: url,
         headers: {
-            'User-Agent' : 'Mozilla/5.0 (Linux; Android 5.1; OPPO R9tm Build/LMY47I; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/43.0.2357.121 Mobile Safari/537.36 hap/1.0.8.1/oppo com.nearme.instant.platform/4.2.1 com.youth.kandianquickapp/2.5.5 ({"packageName":"com.oppo.launcher","type":"shortcut","extra":{"original":{"packageName":"com.oppo.market","type":"sdk","extra":{}},"scene":"api"}})',
+            'User-Agent' : 'Mozilla/5.0 (Linux; Android 11; M2012K11AC Build/RKQ1.200826.002; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/96.0.4664.104 Mobile Safari/537.36 hap/1.9/xiaomi com.miui.hybrid/1.9.0.1 com.youth.kandianquickapp/2.5.5 ({"packageName":"com.miui.home","type":"shortcut","extra":{"original":{"packageName":"com.xiaomi.market","type":"other","extra":{}},"scene":"api"}})',
             'Accept-Language' : 'zh-CN,zh;q=0.9,en;q=0.8',
             'Content-Type' : 'application/x-www-form-urlencoded; charset=utf-8',
             'Host' : 'user.youth.cn',
