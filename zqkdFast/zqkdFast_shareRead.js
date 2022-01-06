@@ -19,7 +19,7 @@ const updateStr = '2022.01.05 11:18 增加延迟'
 let rndtime = "" //毫秒
 let httpResult //global buffer
 
-let zqkdFastShareNum = ($.isNode() ? process.env.zqkdFastShareNum : $.getdata('zqkdFastShareNum')) || 3;
+let zqkdFastShareNum = ($.isNode() ? process.env.zqkdFastShareNum : $.getdata('zqkdFastShareNum')) || 4;
 let userCookie = ($.isNode() ? process.env.zqkdFastCookie : $.getdata('zqkdFastCookie')) || '';
 let userCookieArr = []
 
@@ -49,7 +49,7 @@ let si = ''
                 let readCount = 0
                 for(let i=0; i<zqkdFastShareNum; i++) {
                     readCount++
-                    let randomTime = Math.floor(Math.random()*30*1000) + 3*1000
+                    let randomTime = Math.floor(Math.random()*30*1000) + 5*1000
                     si = randomString(32)
                     console.log(`--随机延迟${Math.floor(randomTime/1000)}秒后开始模拟第${readCount}次分享阅读`)
                     await $.wait(randomTime)
@@ -85,13 +85,14 @@ async function checkEnv() {
         return false
     }
     
-    console.log(`共找到${userCount}个CK`)
+    console.log(`共找到${userCount}个CK，每个账号分享${zqkdFastShareNum}次`)
     return true
 }
 ///////////////////////////////////////////////////////////////////
 async function ListArts(uIdx) {
     let caller = printCaller()
     let userCk = userCookieArr[uIdx]
+    let uid = userCk.match(/uid=(\w+)/)[1]
     let url = `https://user.youth.cn/FastApi/article/lists.json?catid=0&video_catid=1453&op=0&behot_time=0&&app_version=2.5.5&${userCk}`
     let urlObject = populateGetUrl(url)
     await httpGet(urlObject,caller)
@@ -105,17 +106,18 @@ async function ListArts(uIdx) {
             await $.wait(1000)
             await ReadArts(uIdx,sign)
         } else {
-            console.log(`用户${uIdx+1}没有找到可转发的文章`)
+            console.log(`用户${uIdx+1}[${uid}]没有找到可转发的文章`)
         }
     } else {
-        console.log(`用户${uIdx+1} ${result.message}`)
+        console.log(`用户${uIdx+1}[${uid}]获取文章列表失败：${result.message}`)
     }
 }
 
 async function ReadArts(uIdx,sign) {
     let caller = printCaller()
     let userCk = userCookieArr[userIdx]
-    let url = `https://user.youth.cn/v1/article/detail.json?signature=${sign}&source=articleDetail&${userCk}&app_version=2.5.5&channel=c6001&device_model=OPPOR9tm&device_brand=OPPO&resolution=1080*1920&os_version=22&is_wxaccount=1&active_channel=c6001&access=wifi`
+    let uid = userCk.match(/uid=(\w+)/)[1]
+    let url = `https://user.youth.cn/v1/article/detail.json?signature=${sign}&source=articleDetail&${userCk}&app_version=2.5.5&channel=c6004&device_model=M2012K11AC&device_brand=XIAOMI&resolution=1080*2400&os_version=30&is_wxaccount=1&active_channel=c6004&access=wifi`
     let urlObject = populateGetUrl(url)
     await httpGet(urlObject,caller)
     let result = httpResult;
@@ -124,30 +126,31 @@ async function ReadArts(uIdx,sign) {
     if(result.error_code == 0) {
         share_url = result.items.share_url
         fromUrl = encodeURIComponent(encodeURIComponent(share_url+'#'))
-        console.log(`用户${uIdx+1}[${result.items.uid}]开始分享文章：${result.items.title}`)
+        console.log(`用户${uIdx+1}[${uid}]开始分享文章：${result.items.title}`)
         shareFlag = 1
         await $.wait(1000)
         await ShareArticleCallback(uIdx)
         await $.wait(100)
         await ShareEnd(uIdx,result.items.id)
     } else {
-        console.log(`用户${uIdx+1} ${result.message}`)
+        console.log(`用户${uIdx+1}[${uid}]分享文章失败：${result.message}`)
     }
 }
 
 async function ShareArticleCallback(uIdx) {
     let caller = printCaller()
     let userCk = userCookieArr[userIdx]
-    let url = `https://user.youth.cn/FastApi/ArticleTop/shareArticleCallback.json?${userCk}&app_version=2.5.5&channel=c6001&device_model=OPPOR9tm&device_brand=OPPO&resolution=1080*1920&os_version=22&is_wxaccount=1&active_channel=c6001&access=wifi&from=1`
+    let uid = userCk.match(/uid=(\w+)/)[1]
+    let url = `https://user.youth.cn/FastApi/ArticleTop/shareArticleCallback.json?${userCk}&app_version=2.5.5&channel=c6004&device_model=M2012K11AC&device_brand=XIAOMI&resolution=1080*2400&os_version=30&is_wxaccount=1&active_channel=c6004&access=wifi&from=1`
     let urlObject = populateGetUrl(url)
     await httpGet(urlObject,caller)
     let result = httpResult;
     if(!result) return
     
     if(result.error_code == 0) {
-        console.log(`用户${uIdx+1}每次分享可获得：${result.items.share_red_score}青豆`)
+        console.log(`用户${uIdx+1}[${uid}]每次分享可获得：${result.items.share_red_score}青豆`)
     } else {
-        console.log(`用户${uIdx+1} ${result.message}`)
+        console.log(`用户${uIdx+1}[${uid}]${result.message}`)
         shareFlag = 0
     }
 }
@@ -155,16 +158,17 @@ async function ShareArticleCallback(uIdx) {
 async function ShareEnd(uIdx,artId) {
     let caller = printCaller()
     let userCk = userCookieArr[userIdx]
-    let url = `https://user.youth.cn/FastApi/article/shareEnd.json?${userCk}&app_version=2.5.5&channel=c6001&device_model=OPPOR9tm&device_brand=OPPO&resolution=1080*1920&os_version=22&is_wxaccount=1&active_channel=c6001&access=wifi&from=1&device_platform=android&article_id=${artId}&stype=WEIXIN`
+    let uid = userCk.match(/uid=(\w+)/)[1]
+    let url = `https://user.youth.cn/FastApi/article/shareEnd.json?${userCk}&app_version=2.5.5&channel=c6004&device_model=M2012K11AC&device_brand=XIAOMI&resolution=1080*2400&os_version=30&is_wxaccount=1&active_channel=c6004&access=wifi&from=1&device_platform=android&article_id=${artId}&stype=WEIXIN`
     let urlObject = populateGetUrl(url)
     await httpGet(urlObject,caller)
     let result = httpResult;
     if(!result) return
     
     if(result.error_code == 0) {
-        console.log(`用户${uIdx+1} ${result.message}`)
+        console.log(`用户${uIdx+1}[${uid}]${result.message}`)
     } else {
-        console.log(`用户${uIdx+1} ${result.message}`)
+        console.log(`用户${uIdx+1}[${uid}]${result.message}`)
         shareFlag = 0
     }
 }
@@ -205,7 +209,7 @@ function populateGetUrl(url){
     let urlObject = {
         url: url,
         headers: {
-            'User-Agent' : 'Mozilla/5.0 (Linux; Android 5.1; OPPO R9tm Build/LMY47I; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/43.0.2357.121 Mobile Safari/537.36 hap/1.0.8.1/oppo com.nearme.instant.platform/4.2.1 com.youth.kandianquickapp/2.5.5 ({"packageName":"com.oppo.launcher","type":"shortcut","extra":{"original":{"packageName":"com.oppo.market","type":"sdk","extra":{}},"scene":"api"}})',
+            'User-Agent' : 'Mozilla/5.0 (Linux; Android 11; M2012K11AC Build/RKQ1.200826.002; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/96.0.4664.104 Mobile Safari/537.36 hap/1.9/xiaomi com.miui.hybrid/1.9.0.1 com.youth.kandianquickapp/2.5.5 ({"packageName":"com.miui.home","type":"shortcut","extra":{"original":{"packageName":"com.xiaomi.market","type":"other","extra":{}},"scene":"api"}})',
             'Accept-Language' : 'zh-CN,zh;q=0.9,en;q=0.8',
             'Content-Type' : 'application/x-www-form-urlencoded; charset=utf-8',
             'Host' : 'user.youth.cn',
@@ -259,7 +263,7 @@ function populateGetUrlWx(url){
     let urlObject = {
         url: url,
         headers: {
-            'User-Agent' : 'Mozilla/5.0 (Linux; Android 5.1; OPPO R9tm Build/LMY47I; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/86.0.4240.99 XWEB/3170 MMWEBSDK/20211001 Mobile Safari/537.36 MMWEBID/1513 MicroMessenger/8.0.16.2040(0x2800105C) Process/toolsmp WeChat/arm32 Weixin NetType/WIFI Language/zh_CN ABI/arm64',
+            'User-Agent' : 'Mozilla/5.0 (Linux; Android 11; M2012K11AC Build/RKQ1.200826.002; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/86.0.4240.99 XWEB/3171 MMWEBSDK/20210902 Mobile Safari/537.36 MMWEBID/4883 MicroMessenger/8.0.15.2020(0x28000F3D) Process/toolsmp WeChat/arm64 Weixin NetType/WIFI Language/zh_CN ABI/arm64',
             'Accept-Language' : 'zh-CN,zh;q=0.9,en;q=0.8',
             'Referer' : share_url,
             'Content-Type' : 'application/x-www-form-urlencoded; charset=utf-8',
