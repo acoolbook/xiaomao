@@ -19,7 +19,7 @@ https://user.youth.cn/FastApi/NewTaskSimple/getTaskList  https://raw.githubuserc
 user.youth.cn
 */
 
-const jsname = '中青极速版文章'
+const jsname = '中青极速版文章视频'
 const $ = Env(jsname)
 const logDebug = 0
 
@@ -37,6 +37,9 @@ let userReadList = []
 
 let maxReadNum = 0
 
+let ART_ID = 0
+let VIDEO_ID = 1453
+
 ///////////////////////////////////////////////////////////////////
 
 !(async () => {
@@ -48,18 +51,25 @@ let maxReadNum = 0
         if(!(await checkEnv())) return
         
         for(userIdx=0; userIdx < userCount; userIdx++) {
-            await ListArts(userIdx)
+            await ListArts(userIdx,VIDEO_ID,ART_ID)
+            await ListArts(userIdx,ART_ID,VIDEO_ID)
         }
         
         for(let i=0; i<maxReadNum; i++) {
             console.log(`\n第${i+1}轮阅读`)
             for(userIdx=0; userIdx < userCount; userIdx++) {
                 if(i<userReadList[userIdx].length) {
+                    ReadArts(userIdx,i)
+                    await $.wait(200)
+                }
+            }
+            for(userIdx=0; userIdx < userCount; userIdx++) {
+                if(i<userReadList[userIdx].length) {
                     CompleteArts(userIdx,i)
                     await $.wait(200)
                 }
             }
-            await $.wait(Math.floor(Math.random()*5000) + 30000)
+            await $.wait(Math.floor(Math.random()*30000) + 5000)
         }
     }
 })()
@@ -107,29 +117,51 @@ async function GetRewrite() {
     }
 }
 ///////////////////////////////////////////////////////////////////
-async function ListArts(userIdx) {
+async function ListArts(userIdx,cid,vid) {
     let caller = printCaller()
     let userCk = userCookieArr[userIdx]
-    let url = `https://user.youth.cn/FastApi/article/lists.json?catid=0&video_catid=1453&op=0&behot_time=0&&app_version=2.5.5&${userCk}`
+    let uid = userCk.match(/uid=(\w+)/)[1]
+    let url = `https://user.youth.cn/FastApi/article/lists.json?catid=${cid}&video_catid=${vid}&op=0&behot_time=0&&app_version=2.5.5&${userCk}`
+    let urlObject = populateGetUrl(url)
+    await httpGet(urlObject,caller)
+    let result = httpResult;
+    if(!result) return
+    
+    let typeStr = (cid==1453) ? '视频' : '文章'
+    if(result.error_code == 0) {
+        for(let item of result.items) {
+            userReadList[userIdx].push(item.signature)
+        }
+        maxReadNum = getMax(maxReadNum,userReadList[userIdx].length)
+        console.log(`用户${userIdx+1}[${uid}]找到${result.items.length}${typeStr}`)
+    } else {
+        console.log(`用户${userIdx+1}[${uid}]获取${typeStr}列表失败：${result.message}`)
+    }
+}
+
+async function ReadArts(uIdx,signIdx) {
+    let caller = printCaller()
+    let userCk = userCookieArr[userIdx]
+    let uid = userCk.match(/uid=(\w+)/)[1]
+    let sign = userReadList[userIdx][signIdx]
+    let url = `https://user.youth.cn/v1/article/detail.json?signature=${sign}&source=articleDetail&${userCk}&app_version=2.5.5&channel=c6004&device_model=M2012K11AC&device_brand=XIAOMI&resolution=1080*2400&os_version=30&is_wxaccount=1&active_channel=c6004&access=wifi`
     let urlObject = populateGetUrl(url)
     await httpGet(urlObject,caller)
     let result = httpResult;
     if(!result) return
     
     if(result.error_code == 0) {
-        for(let item of result.items) {
-            userReadList[userIdx].push(item.signature)
-        }
-        maxReadNum = getMax(maxReadNum,userReadList[userIdx].length)
-        console.log(`用户${userIdx+1}找到${userReadList[userIdx].length}篇文章`)
+        console.log(`用户${uIdx+1}[${uid}]开始看文章视频：${result.items.title}`)
     } else {
-        console.log(`${result.message}`)
+        console.log(`用户${uIdx+1}[${uid}]看文章视频失败：${result.message}`)
     }
 }
 
 async function CompleteArts(uIdx,signIdx) {
     let caller = printCaller()
     let sign = userReadList[userIdx][signIdx]
+    let userCk = userCookieArr[userIdx]
+    let uid = userCk.match(/uid=(\w+)/)[1]
     let url = `https://user.youth.cn/FastApi/article/complete.json?signature=${sign}`
     let urlObject = populateGetUrl(url)
     await httpGet(urlObject,caller)
@@ -137,9 +169,9 @@ async function CompleteArts(uIdx,signIdx) {
     if(!result) return
     
     if(result.error_code == 0) {
-        console.log(`用户${uIdx+1}[${result.items.uid}]阅读文章获得${result.items.read_score}青豆`)
+        console.log(`用户${uIdx+1}[${uid}]看文章视频获得${result.items.read_score}青豆`)
     } else {
-        console.log(`${result.message}`)
+        console.log(`用户${uIdx+1}[${uid}]获得文章视频奖励失败：${result.message}`)
     }
 }
 ////////////////////////////////////////////////////////////////////
@@ -147,7 +179,7 @@ function populatePostUrl(url,reqBody){
     let urlObject = {
         url: url,
         headers: {
-            'User-Agent' : 'Mozilla/5.0 (Linux; Android 5.1; OPPO R9tm Build/LMY47I; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/43.0.2357.121 Mobile Safari/537.36 hap/1.0.8.1/oppo com.nearme.instant.platform/4.2.1 com.youth.kandianquickapp/2.5.5 ({"packageName":"com.oppo.launcher","type":"shortcut","extra":{"original":{"packageName":"com.oppo.market","type":"sdk","extra":{}},"scene":"api"}})',
+            'User-Agent' : 'Mozilla/5.0 (Linux; Android 11; M2012K11AC Build/RKQ1.200826.002; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/96.0.4664.104 Mobile Safari/537.36 hap/1.9/xiaomi com.miui.hybrid/1.9.0.1 com.youth.kandianquickapp/2.5.5 ({"packageName":"com.miui.home","type":"shortcut","extra":{"original":{"packageName":"com.xiaomi.market","type":"other","extra":{}},"scene":"api"}})',
             'Accept-Language' : 'zh-CN,zh;q=0.9,en;q=0.8',
             'Content-Type' : 'application/x-www-form-urlencoded; charset=utf-8',
             'Host' : 'user.youth.cn',
@@ -163,7 +195,7 @@ function populateGetUrl(url){
     let urlObject = {
         url: url,
         headers: {
-            'User-Agent' : 'Mozilla/5.0 (Linux; Android 5.1; OPPO R9tm Build/LMY47I; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/43.0.2357.121 Mobile Safari/537.36 hap/1.0.8.1/oppo com.nearme.instant.platform/4.2.1 com.youth.kandianquickapp/2.5.5 ({"packageName":"com.oppo.launcher","type":"shortcut","extra":{"original":{"packageName":"com.oppo.market","type":"sdk","extra":{}},"scene":"api"}})',
+            'User-Agent' : 'Mozilla/5.0 (Linux; Android 11; M2012K11AC Build/RKQ1.200826.002; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/96.0.4664.104 Mobile Safari/537.36 hap/1.9/xiaomi com.miui.hybrid/1.9.0.1 com.youth.kandianquickapp/2.5.5 ({"packageName":"com.miui.home","type":"shortcut","extra":{"original":{"packageName":"com.xiaomi.market","type":"other","extra":{}},"scene":"api"}})',
             'Accept-Language' : 'zh-CN,zh;q=0.9,en;q=0.8',
             'Content-Type' : 'application/x-www-form-urlencoded; charset=utf-8',
             'Host' : 'user.youth.cn',
