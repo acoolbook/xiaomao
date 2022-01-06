@@ -43,13 +43,14 @@ let turnNum = []
         console.log('\n准备抽奖')
         for(userIdx=0; userIdx < userCount; userIdx++) {
             await GetRotaryInfo(userIdx)
-        }
-        for(let i=0; i<maxTurnNum; i++) {
-            console.log(`\n开始第${i+1}轮抽奖`)
-            for(userIdx=0; userIdx < userCount; userIdx++) {
-                if(i<turnNum[userIdx]) await TurnRotary(userIdx)
+        
+            for(let i=0; i<maxTurnNum; i++) {
+                console.log(`\n开始第${i+1}轮抽奖`)
+                for(userIdx=0; userIdx < userCount; userIdx++) {
+                    if(i<turnNum[userIdx]) await TurnRotary(userIdx)
+                }
+                await $.wait(1000)
             }
-            await $.wait(1000)
         }
     }
 })()
